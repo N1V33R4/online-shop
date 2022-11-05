@@ -42,6 +42,8 @@ if (isset($_POST['send'])) {
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Contact</title>
+   <meta name="author" content="Group 2">
+   <meta name="description" content="Contact us for any inquiries you may have. Our support will contact back in a few moments.">
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 

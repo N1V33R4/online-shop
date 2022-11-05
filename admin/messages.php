@@ -69,7 +69,7 @@ if (isset($_POST['resolve'])) {
          <form action="" method="POST">
             <div class="flex-btn">
                <input type="hidden" name="msg_id" value="<?= $fetch_messages['id'] ?>">
-               <input type="submit" disabled value="Resolve" class="btn" name="resolve">
+               <input type="submit" <?= $fetch_messages['resolved'] == true ? 'disabled' : '' ?> value="Resolve" class="btn" name="resolve">
                <a href="messages.php?delete=<?= $fetch_messages['id']; ?>" class="delete-btn" onclick="return confirm('Delete this message?');">Delete</a>
             </div>
          </form>

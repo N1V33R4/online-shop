@@ -35,7 +35,7 @@
    </section>
 
    <div class="credit">
-      &copy; Copyright @ <?= date('Y'); ?> by <span>Mr. </span> | All rights reserved.
+      &copy; Copyright <?= date('Y'); ?> by <span>Group 2 </span> | All rights reserved.
    </div>
 
 </footer>

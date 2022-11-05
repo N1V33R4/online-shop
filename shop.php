@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id'])) {
 }
 else {
    $user_id = '';
-   header('location:user_login.php');
+   // header('location:user_login.php');
 }
 
 include 'components/wishlist_cart.php';
@@ -27,6 +27,8 @@ include 'components/wishlist_cart.php';
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Shop</title>
+   <meta name="author" content="Group 2">
+   <meta name="description" content="Our list of all the products we offer on our website!">
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
