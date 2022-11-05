@@ -320,6 +320,10 @@ section {
    padding-bottom: 5rem;
 }
 
+.swiper-slide {
+   /* height: auto; */
+}
+
 .home-products .slide {
    background-color: var(--white);
    border-radius: .5rem;
@@ -671,6 +675,7 @@ section {
    color: var(--light-color);
    line-height: 2;
    margin: .5rem 0;
+   white-space: pre-wrap;
 }
 
 /* About */

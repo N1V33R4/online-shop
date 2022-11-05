@@ -344,7 +344,7 @@ section {
 
 .add-products form .flex .inputBox textarea {
    height: 6rem;
-   resize: none;   
+   /* resize: none;    */
 }
 
 .show-products .box-container { 
@@ -446,6 +446,33 @@ section {
    color: var(--black);
 }
 
+/* Categories */
+.add-cat-btn {
+   position: absolute;
+   top: 3.5rem;
+   right: 1.5rem;
+   bottom: 0;
+   width: auto;
+   height: max-content;
+   margin: auto;
+   padding: .5rem 1rem;
+}
+
+.show-categories .box {
+   text-align: center;
+}
+
+.show-categories .box-container .box img {
+   height: 10rem;
+}
+
+.show-categories .box-container .box h3 {
+   font-size: 2rem;
+   color: var(--black);
+   text-transform: capitalize;
+}
+
+
 /* Placed orders  */
 .placed-orders .box-container {
    display: grid;
@@ -486,6 +513,17 @@ section {
    border-radius: .5rem;
 }
 
+.placed-orders .heading .name {
+   color: var(--red);
+}
+.placed-orders .heading .total {
+   font-weight: 400;
+   text-transform: capitalize;
+}
+.placed-orders .heading .total span {
+   color: var(--main-color);
+}
+
 /* Admin accounts */
 .accounts .box-container {
    display: grid;
@@ -503,6 +541,8 @@ section {
    padding: 2rem;
    padding-top: 1rem;
    text-align: center;
+   position: relative;
+   overflow: hidden;
 }
 
 .accounts .box-container .box p {
@@ -514,6 +554,35 @@ section {
 
 .accounts .box-container .box p span {
    color: var(--main-color);
+}
+
+.accounts .box .fa-cart-shopping {
+   position: absolute;
+   top: 1rem;
+   width: 4.5rem;
+   height: 4.5rem;
+   line-height: 4.2rem;
+   font-size: 2rem;
+   border: var(--border);
+   background-color: var(--white);
+   border-radius: .5rem;
+   text-align: center;
+   color: var(--black);
+   cursor: pointer;
+   transition: .2s ease;
+}
+
+.accounts .box .fa-cart-shopping {
+   right: -10rem;
+}
+
+.accounts .box .fa-cart-shopping:hover {
+   color: var(--white);
+   background-color: var(--black);
+}
+
+.accounts .box:hover .fa-cart-shopping {
+   right: 1rem;
 }
 
 /* Messages */
