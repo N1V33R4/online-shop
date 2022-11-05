@@ -18,9 +18,10 @@ if (isset($_POST['update'])) {
    $price = filter_var($price, FILTER_SANITIZE_STRING);
    $details = $_POST['details'];
    $details = filter_var($details, FILTER_SANITIZE_STRING);
+   $category_id = $_POST['category_id'] == '' ? null : $_POST['category_id'];
 
-   $update_product = $conn->prepare("UPDATE `products` SET name = ?, price = ?, details = ? WHERE id = ?");
-   $update_product->execute([$name, $price, $details, $pid]);
+   $update_product = $conn->prepare("UPDATE `products` SET name = ?, price = ?, details = ?, category_id = ? WHERE id = ?");
+   $update_product->execute([$name, $price, $details, $category_id, $pid]);
 
    $message[] = 'Product updated!';
 
@@ -103,6 +104,23 @@ if (isset($_POST['update'])) {
                <span>Update details</span>
                <textarea name="details" class="box" placeholder="Enter product details" required maxlength="500" cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
                
+               <div class="inputBox" style="position:relative;">
+                  <span>Product category</span>
+                  <select name="category_id" class="box">
+                     <option value="">None</option>
+                     <?php
+                        $show_categories = $conn->prepare("SELECT * FROM `categories` ORDER BY name ASC");
+                        $show_categories->execute();
+                        if ($show_categories->rowCount() > 0) {
+                           while ($fetch_categories = $show_categories->fetch(PDO::FETCH_ASSOC)) {
+                     ?>
+                     <option value="<?= $fetch_categories['id'] ?>" 
+                        <?= $fetch_products['category_id'] == $fetch_categories['id'] ? 'selected' : '' ?>><?= $fetch_categories['name'] ?>
+                     </option>
+                     <?php }} ?>
+                  </select>
+               </div>
+
                <span>Update image 01</span>
                <input type="file" name="image_01" class="box" accept="image/jpg, image/jpeg, image/png, image/webp">
                <span>Update image 02</span>

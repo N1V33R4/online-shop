@@ -25,6 +25,8 @@ include 'components/wishlist_cart.php';
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Category</title>
+   <meta name="author" content="Group 2">
+   <meta name="description" content="Browsed through the many categories of items we offer.">
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -44,9 +46,11 @@ include 'components/wishlist_cart.php';
       <div class="box-container">
 
       <?php
-         $category = $_GET['category'];
-         $select_products = $conn->prepare("SELECT * FROM `products` WHERE name LIKE '%{$category}%'");
-         $select_products->execute();
+         // $category = $_GET['category'];
+         // $select_products = $conn->prepare("SELECT * FROM `products` WHERE name LIKE '%{$category}%'");
+         $category_id = $_GET['id'];
+         $select_products = $conn->prepare("SELECT * FROM `products` WHERE category_id = ?");
+         $select_products->execute([$category_id]);
          if ($select_products->rowCount() > 0) {
             while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
       ?>

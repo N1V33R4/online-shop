@@ -25,6 +25,8 @@ include 'components/wishlist_cart.php';
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Home</title>
+   <meta name="author" content="Group 2">
+   <meta name="description" content="Find your much needed products with us, today. See our promotions we offer.">
 
    <!-- swiper cdn -->
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -94,13 +96,19 @@ include 'components/wishlist_cart.php';
       <div class="swiper category-slider">
 
          <div class="swiper-wrapper">
-
-            <a href="category.php?category=laptop" class="swiper-slide slide">
-               <img src="images/icon-1.png" alt="">
-               <h3>Laptop</h3>
+            <?php
+               $show_categories = $conn->prepare("SELECT * FROM `categories` ORDER BY name ASC");
+               $show_categories->execute();
+               if ($show_categories->rowCount() > 0) {
+                  while ($fetch_categories = $show_categories->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <a href="category.php?category=<?= $fetch_categories['name']; ?>&id=<?= $fetch_categories['id']; ?>" class="swiper-slide slide">
+               <img src="uploaded_img/<?= $fetch_categories['icon']; ?>" alt="">
+               <h3><?= $fetch_categories['name']; ?></h3>
             </a>
+            <?php }} ?>
 
-            <a href="category.php?category=tv" class="swiper-slide slide">
+            <!-- <a href="category.php?category=tv" class="swiper-slide slide">
                <img src="images/icon-2.png" alt="">
                <h3>tv</h3>
             </a>
@@ -133,7 +141,7 @@ include 'components/wishlist_cart.php';
             <a href="category.php?category=watch" class="swiper-slide slide">
                <img src="images/icon-8.png" alt="">
                <h3>watch</h3>
-            </a>
+            </a> -->
 
          </div>
 
@@ -156,7 +164,7 @@ include 'components/wishlist_cart.php';
       <div class="swiper-wrapper">
 
       <?php 
-         $select_products = $conn->prepare("SELECT * FROM `products` LIMIT 6");
+         $select_products = $conn->prepare("SELECT * FROM `products` ORDER BY id DESC LIMIT 6");
          $select_products->execute();
          if ($select_products->rowCount() > 0) {
             while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
@@ -256,7 +264,7 @@ include 'components/wishlist_cart.php';
                slidesPerView: 4,
             },
             1024: {
-               slidesPerView: 5,
+               slidesPerView: 4,
             },
          },
       });

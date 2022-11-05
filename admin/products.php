@@ -18,6 +18,7 @@ if (isset($_POST['add_product'])) {
    $price = filter_var($price, FILTER_SANITIZE_STRING);
    $details = $_POST['details'];
    $details = filter_var($details, FILTER_SANITIZE_STRING);
+   $category_id = $_POST['category_id'] == '' ? null : $_POST['category_id'];
 
    $image_01 = $_FILES['image_01']['name'];
    $image_01 = filter_var($image_01, FILTER_SANITIZE_STRING);
@@ -53,8 +54,8 @@ if (isset($_POST['add_product'])) {
          move_uploaded_file($image_02_tmp_name, $image_02_folder);
          move_uploaded_file($image_03_tmp_name, $image_03_folder);
 
-         $insert_product = $conn->prepare("INSERT INTO `products` (name, details, price, image_01, image_02, image_03) VALUES (?, ?, ?, ?, ?, ?)");
-         $insert_product->execute([$name, $details, $price, $image_01, $image_02, $image_03]);
+         $insert_product = $conn->prepare("INSERT INTO `products` (name, details, price, image_01, image_02, image_03, category_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+         $insert_product->execute([$name, $details, $price, $image_01, $image_02, $image_03, $category_id]);
 
          $message[] = 'New product added!';
       }
@@ -119,6 +120,21 @@ if (isset($_GET['delete'])) {
                <span>Product price (required)</span>
                <input type="number" min="0" max="9999999999" required placeholder="Enter product price" name="price"
                onkeydown="if(this.value.length == 10) return false;" class="box">
+            </div>
+            <div class="inputBox" style="position:relative;">
+               <span>Product category</span>
+               <select name="category_id" class="box">
+                  <option value="none">None</option>
+                  <?php
+                     $show_categories = $conn->prepare("SELECT * FROM `categories` ORDER BY name ASC");
+                     $show_categories->execute();
+                     if ($show_categories->rowCount() > 0) {
+                        while ($fetch_categories = $show_categories->fetch(PDO::FETCH_ASSOC)) {
+                  ?>
+                  <option value="<?= $fetch_categories['id'] ?>"><?= $fetch_categories['name'] ?></option>
+                  <?php }} ?>
+               </select>
+               <a href="categories.php" class="btn add-cat-btn"><i class="fa-solid fa-square-plus"></i></a>
             </div>
             <div class="inputBox">
                <span>Image 01 (required)</span>
