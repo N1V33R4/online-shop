@@ -53,14 +53,36 @@ if (isset($_GET['delete'])) {
 <!-- Placed orders section starts -->
 
 <section class="placed-orders">
-   <h1 class="heading">Placed orders</h1>
+   <h1 class="heading">Placed orders 
+      <?php 
+      if (isset($_GET['user_id'])) {
+         $name = $_GET['name'];
+         echo " : <span class='name'>$name</span>";
+
+         $total_completed = 0;
+         $select_completed = $conn->prepare("SELECT total_price FROM `orders` WHERE user_id = ? AND payment_status = ? ORDER BY placed_on DESC");
+         $select_completed->execute([$_GET['user_id'], 'completed']);
+         while ($fetch_completed = $select_completed->fetch(PDO::FETCH_ASSOC)) {
+            $total_completed += $fetch_completed['total_price'];
+         }
+         echo "<br><span class='total'>Total spent: <span>$$total_completed/-</span></span>";
+      }
+      ?>
+   </h1>
 
    
 
    <div class="box-container">
       <?php 
-         $select_orders = $conn->prepare("SELECT * FROM `orders` ORDER BY placed_on DESC");
-         $select_orders->execute();
+         if (isset($_GET['user_id'])) {
+            $select_orders = $conn->prepare("SELECT * FROM `orders` WHERE user_id = ? ORDER BY placed_on DESC");
+            $select_orders->execute([$_GET['user_id']]);
+         }
+         else {
+            $select_orders = $conn->prepare("SELECT * FROM `orders` ORDER BY placed_on DESC");
+            $select_orders->execute();
+         }
+
          if ($select_orders->rowCount() > 0) {
             while ($fetch_orders = $select_orders->fetch(PDO::FETCH_ASSOC)) {
       ?>
