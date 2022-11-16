@@ -25,9 +25,17 @@ include 'components/wishlist_cart.php';
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Quick View</title>
+   <?php 
+      $pid = $_GET['pid'];
+      $select_product = $conn->prepare("SELECT name, details FROM `products` WHERE id = ?");
+      $select_product->execute([$pid]);
+      if ($select_product->rowCount() > 0) {
+         $fetch_product_seo = $select_product->fetch(PDO::FETCH_ASSOC);
+      }
+   ?>
+   <title><?= $fetch_product_seo['name'] ?> - OnlineShop</title>
    <meta name="author" content="Group 2">
-   <meta name="description" content="Look at our products' description and images.">
+   <meta name="description" content="<?= $fetch_product_seo['details'] ?>">
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
