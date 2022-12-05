@@ -626,7 +626,36 @@ section {
    background-color: #677;
 }
 
+/* SEO */
+.form-container.seo {
+   flex-direction: column;
+}
+.form-container.seo span {
+   font-size: 2rem;
+}
+.form-container.seo form {
+   text-align: left;
+   color: var(--light-color);
+}
 
+.seo-box {
+   position: absolute;
+   bottom: 2rem;
+   right: 2rem;
+   width: 5rem;
+   height: 5rem;
+   font-size: 2rem;
+   font-weight: bold;
+   background-color: hsl(204, 94%, 64%);;
+   padding: 3rem;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.seo-box a {
+   color: var(--white);
+}
 
 
 /* Media queries */

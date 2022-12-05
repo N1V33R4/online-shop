@@ -130,6 +130,12 @@ if (!isset($admin_id)) {
 
 </section>
 
+<div class="seo-box">
+   <div>
+      <a href="seo.php">SEO</a>
+   </div>
+</div>
+
 <!-- Admin dashboard ends -->
 
 
