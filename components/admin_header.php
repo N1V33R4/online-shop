@@ -23,7 +23,7 @@ if (isset($message)) {
          <a href="admin_accounts.php">Admins</a>
          <a href="users_accounts.php">Users</a>
          <a href="messages.php">Messages</a>
-         <a href="seo.php">SEO</a>
+         <!-- <a href="seo.php">SEO</a> -->
       </nav>
 
       <div class="icons">
